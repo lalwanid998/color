@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    const [bgColor, setBgColor] = useState("");
 
+    const handleClick = (color) => {
+        localStorage.setItem("color", color);
+        setBgColor(color);
+    };
+
+    return (
+        <div style={{backgroundColor: localStorage.getItem("color"), height: 500 }}>
+            <button onClick={() => handleClick("red")}>Red</button>
+            <button onClick={() => handleClick("blue")}>Blue</button>
+            <button onClick={() => handleClick("yellow")}>Yellow</button>
+        </div>
+    );
+}
 export default App;
